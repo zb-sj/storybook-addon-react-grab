@@ -1,0 +1,21 @@
+src/manager.tsx
+  a79d10550b878b28 1-27
+---
+{
+  "schema_version": "zax-attestation/1.1.0",
+  "base_commit_sha": "211ffc2ddef01a0b31fef0f4e897e65d6aa993e1",
+  "prompts": {
+    "a79d10550b878b28": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "548cc341-0087-40f0-9a91-8f411372ca10",
+        "model": "claude-opus-4-8"
+      },
+      "skills": [],
+      "tool_counts": {},
+      "total_additions": 27,
+      "total_deletions": 0,
+      "overriden_lines": 0
+    }
+  }
+}
