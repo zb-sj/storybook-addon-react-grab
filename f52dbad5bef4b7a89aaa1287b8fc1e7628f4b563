@@ -1,0 +1,52 @@
+examples/package.json
+  a79d10550b878b28 1-17
+examples/.storybook/main.ts
+  a79d10550b878b28 1-8
+examples/.storybook/preview.ts
+  a79d10550b878b28 1-2
+examples/src/Button.tsx
+  a79d10550b878b28 1-18
+examples/src/Button.stories.tsx
+  a79d10550b878b28 1-8
+docs/SPIKE.md
+  a79d10550b878b28 1-111
+---
+{
+  "schema_version": "zax-attestation/1.1.0",
+  "base_commit_sha": "f52dbad5bef4b7a89aaa1287b8fc1e7628f4b563",
+  "prompts": {
+    "a79d10550b878b28": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "548cc341-0087-40f0-9a91-8f411372ca10",
+        "model": "claude-opus-4-8"
+      },
+      "skills": [
+        {
+          "id": "superpowers:brainstorming",
+          "ts": "2026-06-23T06:19:02.134Z"
+        },
+        {
+          "id": "superpowers:writing-plans",
+          "ts": "2026-06-23T07:17:56.955Z"
+        },
+        {
+          "id": "superpowers:subagent-driven-development",
+          "ts": "2026-06-23T07:34:53.188Z"
+        }
+      ],
+      "tool_counts": {
+        "Skill": 3,
+        "Bash": 11,
+        "ToolSearch": 1,
+        "WebFetch": 7,
+        "AskUserQuestion": 2,
+        "Write": 2,
+        "Agent": 3
+      },
+      "total_additions": 264,
+      "total_deletions": 0,
+      "overriden_lines": 0
+    }
+  }
+}
