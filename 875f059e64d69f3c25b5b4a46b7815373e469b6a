@@ -1,0 +1,32 @@
+docs/superpowers/specs/2026-06-23-storybook-addon-react-grab-design.md
+  a79d10550b878b28 1-147
+---
+{
+  "schema_version": "zax-attestation/1.1.0",
+  "base_commit_sha": "875f059e64d69f3c25b5b4a46b7815373e469b6a",
+  "prompts": {
+    "a79d10550b878b28": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "548cc341-0087-40f0-9a91-8f411372ca10",
+        "model": "claude-opus-4-8"
+      },
+      "skills": [
+        {
+          "id": "superpowers:brainstorming",
+          "ts": "2026-06-23T06:19:02.134Z"
+        }
+      ],
+      "tool_counts": {
+        "Skill": 1,
+        "Bash": 2,
+        "ToolSearch": 1,
+        "WebFetch": 6,
+        "AskUserQuestion": 1
+      },
+      "total_additions": 147,
+      "total_deletions": 0,
+      "overriden_lines": 0
+    }
+  }
+}
