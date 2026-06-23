@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+
+# local-only planning artifacts (per user: do not commit)
+docs/superpowers/
+.superpowers/
+storybook-static/
+test-results/
+playwright-report/
