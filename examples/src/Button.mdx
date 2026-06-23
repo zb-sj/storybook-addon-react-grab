@@ -1,0 +1,16 @@
+import { Meta, Canvas, Story } from '@storybook/addon-docs/blocks';
+import * as ButtonStories from './Button.stories';
+
+<Meta of={ButtonStories} />
+
+# Button
+
+This docs page renders both stories on one page to verify per-story context resolution.
+
+## Primary
+
+<Canvas of={ButtonStories.Primary} />
+
+## Secondary
+
+<Canvas of={ButtonStories.Secondary} />

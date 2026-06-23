@@ -6,3 +6,5 @@ export default meta;
 type Story = StoryObj<typeof Button>;
 
 export const Primary: Story = { args: { variant: 'primary', size: 'md', children: 'Click me' } };
+
+export const Secondary: Story = { args: { variant: 'secondary', size: 'sm', children: 'Secondary' } };
