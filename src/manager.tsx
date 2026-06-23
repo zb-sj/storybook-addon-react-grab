@@ -2,6 +2,7 @@ import React from 'react';
 import { addons, types, useGlobals } from 'storybook/manager-api';
 import { IconButton } from 'storybook/internal/components';
 import { ADDON_ID, TOOL_ID, GLOBAL_ENABLED } from './constants';
+import { ReactGrabIcon } from './react-grab-icon';
 
 function GrabToggle() {
   const [globals, updateGlobals] = useGlobals();
@@ -13,7 +14,7 @@ function GrabToggle() {
       title: active ? 'React Grab: on' : 'React Grab: off',
       onClick: () => updateGlobals({ [GLOBAL_ENABLED]: !active }),
     },
-    '🤏 Grab',
+    React.createElement(ReactGrabIcon, null),
   );
 }
 
