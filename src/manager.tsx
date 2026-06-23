@@ -1,18 +1,19 @@
 import React from 'react';
 import { addons, types, useGlobals } from 'storybook/manager-api';
 import { IconButton } from 'storybook/internal/components';
-import { ADDON_ID, TOOL_ID, GLOBAL_ENABLED } from './constants';
+import { ADDON_ID, TOOL_ID, GLOBAL_TOOLBAR } from './constants';
 import { ReactGrabIcon } from './react-grab-icon';
 
 function GrabToggle() {
   const [globals, updateGlobals] = useGlobals();
-  const active = Boolean(globals[GLOBAL_ENABLED]);
+  // active = react-grab's bottom toolbar is currently shown.
+  const shown = globals[GLOBAL_TOOLBAR] ?? true;
   return React.createElement(
     IconButton,
     {
-      active,
-      title: active ? 'React Grab: on' : 'React Grab: off',
-      onClick: () => updateGlobals({ [GLOBAL_ENABLED]: !active }),
+      active: Boolean(shown),
+      title: shown ? 'Hide React Grab toolbar' : 'Show React Grab toolbar',
+      onClick: () => updateGlobals({ [GLOBAL_TOOLBAR]: !shown }),
     },
     React.createElement(ReactGrabIcon, null),
   );

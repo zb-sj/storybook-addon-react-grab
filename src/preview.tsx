@@ -1,19 +1,33 @@
 import React from 'react';
-import { registerPlugin } from 'react-grab';
+import { registerPlugin, unregisterPlugin, type Plugin } from 'react-grab';
 import { createContextMap } from './context-map';
-import { createGrabPlugin, type GrabPlugin } from './plugin';
-import { GLOBAL_ENABLED, PARAM_KEY, STORY_ATTR } from './constants';
+import { createGrabPlugin } from './plugin';
+import { GLOBAL_TOOLBAR, PARAM_KEY, STORY_ATTR, TOOLBAR_PLUGIN_ID } from './constants';
 import type { AddonOptions } from './types';
 
 const map = createContextMap();
-let plugin: GrabPlugin | null = null;
+let enrichmentRegistered = false;
 
-function ensureRegistered(opts: AddonOptions): GrabPlugin {
-  if (!plugin) {
-    plugin = createGrabPlugin(map, opts);
-    registerPlugin(plugin);
-  }
-  return plugin;
+function ensureEnrichmentRegistered(opts: AddonOptions): void {
+  if (enrichmentRegistered) return;
+  registerPlugin(createGrabPlugin(map, opts));
+  enrichmentRegistered = true;
+}
+
+// react-grab's own bottom toolbar widget is shown/hidden via `theme.toolbar.enabled`,
+// which is only writable through a registered plugin's theme (setOptions excludes theme).
+// SolidJS skips a store update when the theme object reference is unchanged, so toggling
+// requires unregister + re-register with a fresh theme object each time.
+let lastToolbarVisible: boolean | undefined;
+
+function applyToolbarVisibility(visible: boolean): void {
+  if (lastToolbarVisible === visible) return;
+  unregisterPlugin(TOOLBAR_PLUGIN_ID);
+  registerPlugin({
+    name: TOOLBAR_PLUGIN_ID,
+    theme: { toolbar: { enabled: visible } },
+  } as Plugin);
+  lastToolbarVisible = visible;
 }
 
 // SB9 decorator signature: (StoryFn, context) => renderable.
@@ -21,7 +35,7 @@ function ensureRegistered(opts: AddonOptions): GrabPlugin {
 export const decorators = [
   (StoryFn: () => React.ReactNode, context: any) => {
     const opts: AddonOptions = context.parameters?.[PARAM_KEY] ?? {};
-    const p = ensureRegistered(opts);
+    ensureEnrichmentRegistered(opts);
 
     map.set(context.id, {
       storyId: context.id,
@@ -30,8 +44,11 @@ export const decorators = [
       args: (context.args ?? {}) as Record<string, unknown>,
     });
 
-    const enabled = context.globals?.[GLOBAL_ENABLED] ?? opts.enabled ?? true;
-    p.getApi()?.setEnabled(Boolean(enabled));
+    // The toolbar button toggles react-grab's bottom toolbar visibility, NOT grabbing
+    // itself — grabbing (hover + ⌘C) and the addon's enrichment stay active either way.
+    // react-grab re-inits on story navigation, so re-apply from the persisted global.
+    const toolbarVisible = context.globals?.[GLOBAL_TOOLBAR] ?? true;
+    applyToolbarVisibility(Boolean(toolbarVisible));
 
     return React.createElement(
       'div',
@@ -41,4 +58,4 @@ export const decorators = [
   },
 ];
 
-export const initialGlobals = { [GLOBAL_ENABLED]: true };
+export const initialGlobals = { [GLOBAL_TOOLBAR]: true };
