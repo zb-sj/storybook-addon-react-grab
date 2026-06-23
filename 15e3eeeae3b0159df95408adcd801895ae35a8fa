@@ -1,0 +1,21 @@
+examples/src/Button.mdx
+  a79d10550b878b28 1-16
+---
+{
+  "schema_version": "zax-attestation/1.1.0",
+  "base_commit_sha": "15e3eeeae3b0159df95408adcd801895ae35a8fa",
+  "prompts": {
+    "a79d10550b878b28": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "548cc341-0087-40f0-9a91-8f411372ca10",
+        "model": "claude-opus-4-8"
+      },
+      "skills": [],
+      "tool_counts": {},
+      "total_additions": 16,
+      "total_deletions": 0,
+      "overriden_lines": 0
+    }
+  }
+}
