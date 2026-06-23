@@ -1,0 +1,45 @@
+LICENSE
+  a79d10550b878b28 1-21
+README.md
+  a79d10550b878b28 1-82
+---
+{
+  "schema_version": "zax-attestation/1.1.0",
+  "base_commit_sha": "8c295a670f829377cc57a03a5b6c7fd3ac265c86",
+  "prompts": {
+    "a79d10550b878b28": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "548cc341-0087-40f0-9a91-8f411372ca10",
+        "model": "claude-opus-4-8"
+      },
+      "skills": [
+        {
+          "id": "superpowers:brainstorming",
+          "ts": "2026-06-23T06:19:02.134Z"
+        },
+        {
+          "id": "superpowers:writing-plans",
+          "ts": "2026-06-23T07:17:56.955Z"
+        },
+        {
+          "id": "superpowers:subagent-driven-development",
+          "ts": "2026-06-23T07:34:53.188Z"
+        }
+      ],
+      "tool_counts": {
+        "Skill": 3,
+        "Bash": 19,
+        "ToolSearch": 2,
+        "WebFetch": 7,
+        "AskUserQuestion": 2,
+        "Write": 2,
+        "Agent": 12,
+        "SendMessage": 1
+      },
+      "total_additions": 219,
+      "total_deletions": 0,
+      "overriden_lines": 0
+    }
+  }
+}
