@@ -41,4 +41,15 @@ describe('serializeArgs', () => {
   test('null and undefined', () => {
     expect(serializeArgs({ a: null, b: undefined })).toBe('{ a: null, b: undefined }');
   });
+
+  test('undefined opts do not disable caps (default maxDepth=3 applies)', () => {
+    expect(serializeArgs({ a: { b: { c: { d: 1 } } } }, { maxDepth: undefined }))
+      .toBe('{ a: { b: { c: [Object] } } }');
+  });
+
+  test('circular reference guard returns [Circular] without stack overflow', () => {
+    const o: any = {};
+    o.self = o;
+    expect(serializeArgs({ o })).toBe('{ o: { self: [Circular] } }');
+  });
 });

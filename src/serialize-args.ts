@@ -12,7 +12,7 @@ function isReactElement(v: unknown): boolean {
   );
 }
 
-function serializeValue(value: unknown, cfg: Cfg, depth: number): string {
+function serializeValue(value: unknown, cfg: Cfg, depth: number, seen: WeakSet<object> = new WeakSet()): string {
   if (value === null) return 'null';
   if (value === undefined) return 'undefined';
   const t = typeof value;
@@ -28,15 +28,19 @@ function serializeValue(value: unknown, cfg: Cfg, depth: number): string {
   if (isReactElement(value)) return '[ReactElement]';
   if (Array.isArray(value)) {
     if (depth >= cfg.maxDepth) return '[Array]';
-    const shown = value.slice(0, cfg.maxArrayItems).map((v) => serializeValue(v, cfg, depth + 1));
+    if (seen.has(value)) return '[Circular]';
+    seen.add(value);
+    const shown = value.slice(0, cfg.maxArrayItems).map((v) => serializeValue(v, cfg, depth + 1, seen));
     const overflow = value.length > cfg.maxArrayItems ? `, …(+${value.length - cfg.maxArrayItems})` : '';
     return `[${shown.join(', ')}${overflow}]`;
   }
   if (t === 'object') {
     if (depth >= cfg.maxDepth) return '[Object]';
+    if (seen.has(value as object)) return '[Circular]';
+    seen.add(value as object);
     const entries = Object.entries(value as Record<string, unknown>);
     if (entries.length === 0) return '{}';
-    return `{ ${entries.map(([k, v]) => `${k}: ${serializeValue(v, cfg, depth + 1)}`).join(', ')} }`;
+    return `{ ${entries.map(([k, v]) => `${k}: ${serializeValue(v, cfg, depth + 1, seen)}`).join(', ')} }`;
   }
   return String(value);
 }
@@ -45,6 +49,10 @@ export function serializeArgs(
   args: Record<string, unknown>,
   opts: Pick<AddonOptions, 'maxDepth' | 'maxStringLength' | 'maxArrayItems'> = {},
 ): string {
-  const cfg: Cfg = { ...DEFAULTS, ...opts };
+  const cfg: Cfg = {
+    maxDepth: opts.maxDepth ?? DEFAULTS.maxDepth,
+    maxStringLength: opts.maxStringLength ?? DEFAULTS.maxStringLength,
+    maxArrayItems: opts.maxArrayItems ?? DEFAULTS.maxArrayItems,
+  };
   return serializeValue(args, cfg, 0);
 }
