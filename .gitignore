@@ -9,3 +9,4 @@ docs/superpowers/
 storybook-static/
 test-results/
 playwright-report/
+*.tgz
