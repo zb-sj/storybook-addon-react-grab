@@ -1,0 +1,13 @@
+README.md
+  h_5fc43fec215ff3 3,44-47,58-61,69-72,75-77,81-84
+---
+{
+  "schema_version": "zax-attestation/1.1.0",
+  "base_commit_sha": "bf9f88bb5d0e081905dafcf0c38fc97521646692",
+  "prompts": {},
+  "humans": {
+    "h_5fc43fec215ff3": {
+      "author": "sejun@zigbang.com"
+    }
+  }
+}
