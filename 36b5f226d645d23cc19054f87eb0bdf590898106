@@ -1,0 +1,13 @@
+.gitignore
+  h_5fc43fec215ff3 12
+---
+{
+  "schema_version": "zax-attestation/1.1.0",
+  "base_commit_sha": "36b5f226d645d23cc19054f87eb0bdf590898106",
+  "prompts": {},
+  "humans": {
+    "h_5fc43fec215ff3": {
+      "author": "sejun@zigbang.com"
+    }
+  }
+}
