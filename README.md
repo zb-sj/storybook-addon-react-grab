@@ -1,6 +1,6 @@
 # storybook-addon-react-grab
 
-Brings [react-grab](https://github.com/nicholasgasior/react-grab) into Storybook so that hovering a story element and pressing ⌘C (or Ctrl+C on Windows/Linux) copies element context enriched with the current story's identity and args — giving AI agents a precise, actionable description of exactly which component variant you are looking at.
+Brings [react-grab](https://github.com/aidenybai/react-grab) into Storybook so that hovering a story element and pressing ⌘C (or Ctrl+C on Windows/Linux) copies element context enriched with the current story's identity and args — giving AI agents a precise, actionable description of exactly which component variant you are looking at.
 
 ## What gets copied
 
@@ -41,7 +41,10 @@ export default {
 
 ## Toolbar toggle
 
-A **🤏 Grab** button appears in the Storybook toolbar. Click it to enable or disable grabbing. When disabled, the addon's enrichment is inactive and react-grab behaves as if the plugin were not registered.
+A react-grab logo button appears in the Storybook toolbar. It is a master on/off for
+react-grab in the preview: when **off**, grabbing is disabled (no hover/⌘C interception)
+and react-grab's own bottom toolbar is hidden; when **on**, both are active. The icon
+follows the toolbar's foreground color, so it adapts to light/dark themes.
 
 ## Options
 
@@ -52,11 +55,10 @@ Configure via the `reactGrab` parameter on a story or in `preview.ts`:
 export default {
   parameters: {
     reactGrab: {
-      enabled: true,       // default: true
-      includeArgs: true,   // default: true — include story args in the Storybook block
-      maxDepth: 10,        // forwarded to react-grab context generation
-      maxStringLength: 200,
-      maxArrayItems: 10,
+      includeArgs: true,    // default: true — append current story args to the block
+      maxDepth: 3,          // default: 3  — depth when serializing nested arg objects
+      maxStringLength: 80,  // default: 80 — truncate long string arg values
+      maxArrayItems: 10,    // default: 10 — cap items shown for array args
     },
   },
 };
@@ -64,18 +66,22 @@ export default {
 
 | Option | Type | Default | Description |
 |---|---|---|---|
-| `enabled` | `boolean` | `true` | Master switch for the addon |
-| `includeArgs` | `boolean` | `true` | Append current story args to the Storybook block |
-| `maxDepth` | `number` | — | Max element tree depth passed to react-grab |
-| `maxStringLength` | `number` | — | Max string length for serialized values |
-| `maxArrayItems` | `number` | — | Max items shown for array args |
+| `includeArgs` | `boolean` | `true` | Append the current story's args to the Storybook block |
+| `maxDepth` | `number` | `3` | Depth limit when serializing nested arg objects |
+| `maxStringLength` | `number` | `80` | Length limit for serialized string values (longer values are shortened) |
+| `maxArrayItems` | `number` | `10` | Max items shown for array args |
 | `includeUsage` | — | — | **Reserved for v1.1** — not implemented in v1 |
+
+On/off is controlled by the toolbar toggle (above), not a parameter. These options only
+shape the appended Storybook block and how story args are serialized.
 
 ## Roadmap (v1.1)
 
 - CSF story source snippet in the copied payload
-- Usage JSX reconstruction
-- More precise docs-mode multi-story handling (currently the nearest `data-sb-story-id` ancestor is used, which may not be the intended story in a docs canvas with multiple rendered stories)
+- Usage JSX reconstruction (the `includeUsage` option)
+
+Docs (MDX) pages with multiple stories are supported: each grabbed element resolves to its
+own canvas's story via the nearest `data-sb-story-id` ancestor.
 
 ## License
 
