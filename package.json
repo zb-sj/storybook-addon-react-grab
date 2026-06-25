@@ -1,7 +1,8 @@
 {
-  "name": "storybook-addon-react-grab",
+  "name": "@zigbang/storybook-addon-react-grab",
   "version": "0.1.0",
-  "description": "Storybook 9 addon: grab story elements into your clipboard for AI agents, enriched with story context.",
+  "description": "Storybook addon: grab story elements into your clipboard for AI agents, enriched with story context.",
+  "publishConfig": { "access": "public" },
   "license": "MIT",
   "author": "Jeong, Sejun",
   "type": "module",
@@ -19,10 +20,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zb-sj/storybook-addon-react-grab.git"
+    "url": "git+https://github.com/zigbang/storybook-addon-react-grab.git"
   },
-  "homepage": "https://github.com/zb-sj/storybook-addon-react-grab#readme",
-  "bugs": "https://github.com/zb-sj/storybook-addon-react-grab/issues",
+  "homepage": "https://github.com/zigbang/storybook-addon-react-grab#readme",
+  "bugs": "https://github.com/zigbang/storybook-addon-react-grab/issues",
   "exports": {
     "./manager": "./dist/manager.js",
     "./preview": { "types": "./dist/preview.d.ts", "default": "./dist/preview.js" },

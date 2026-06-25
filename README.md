@@ -1,4 +1,4 @@
-# storybook-addon-react-grab
+# @zigbang/storybook-addon-react-grab
 
 Brings [react-grab](https://github.com/aidenybai/react-grab) into Storybook so that hovering a story element and pressing ⌘C (or Ctrl+C on Windows/Linux) copies element context enriched with the current story's identity and args — giving AI agents a precise, actionable description of exactly which component variant you are looking at.
 
@@ -24,7 +24,7 @@ The first line is react-grab's own output. Everything from `--- Storybook ---` d
 ## Install
 
 ```bash
-pnpm add -D storybook-addon-react-grab react-grab
+pnpm add -D @zigbang/storybook-addon-react-grab react-grab
 ```
 
 Then add the addon to `.storybook/main.ts`:
@@ -33,7 +33,7 @@ Then add the addon to `.storybook/main.ts`:
 // .storybook/main.ts
 export default {
   addons: [
-    'storybook-addon-react-grab',
+    '@zigbang/storybook-addon-react-grab',
     // ...other addons
   ],
 };

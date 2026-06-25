@@ -1,4 +1,4 @@
-export const ADDON_ID = 'storybook-addon-react-grab';
+export const ADDON_ID = '@zigbang/storybook-addon-react-grab';
 export const TOOL_ID = `${ADDON_ID}/tool`;
 // Plugin that carries only a theme override to show/hide react-grab's own toolbar widget.
 export const TOOLBAR_PLUGIN_ID = `${ADDON_ID}/toolbar-visibility`;

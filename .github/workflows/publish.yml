@@ -1,0 +1,43 @@
+name: Publish to npm
+
+# Publishes @zigbang/storybook-addon-react-grab to npm when a GitHub Release is
+# published (tag the release, e.g. v0.1.0), or manually via the Actions tab.
+# Requires repo secret NPM_TOKEN (an npm automation token with publish rights to
+# the @zigbang scope).
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write # enables npm provenance
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://registry.npmjs.org
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm test
+
+      - run: pnpm build
+
+      # publishConfig.access=public makes the scoped package public.
+      # --provenance attaches a verifiable build provenance statement.
+      - run: pnpm publish --no-git-checks --provenance
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
