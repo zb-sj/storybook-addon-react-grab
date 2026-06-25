@@ -1,0 +1,7 @@
+# Knope Bot config. The hosted Knope Bot (https://github.com/marketplace/knope-bot)
+# maintains a "Release X.Y.Z" preview PR from conventional commits, bumps the version
+# in the files below + updates the changelog, and on merge creates a GitHub release.
+# That release triggers .github/workflows/publish.yml, which publishes to npm.
+[package]
+versioned_files = ["package.json"]
+changelog = "CHANGELOG.md"
