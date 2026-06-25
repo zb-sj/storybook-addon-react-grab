@@ -24,9 +24,8 @@
   "homepage": "https://github.com/zb-sj/storybook-addon-react-grab#readme",
   "bugs": "https://github.com/zb-sj/storybook-addon-react-grab/issues",
   "exports": {
-    "./preset": "./dist/preset.js",
     "./manager": "./dist/manager.js",
-    "./preview": { "types": "./dist/preview.d.ts", "import": "./dist/preview.js" },
+    "./preview": { "types": "./dist/preview.d.ts", "default": "./dist/preview.js" },
     "./package.json": "./package.json"
   },
   "files": ["dist/**/*", "README.md", "LICENSE"],
@@ -40,7 +39,7 @@
   "peerDependencies": {
     "react": ">=18",
     "react-grab": "*",
-    "storybook": "^9"
+    "storybook": ">=9"
   },
   "devDependencies": {
     "@playwright/test": "^1.48.0",

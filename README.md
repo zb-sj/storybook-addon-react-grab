@@ -18,7 +18,7 @@ The first line is react-grab's own output. Everything from `--- Storybook ---` d
 
 ## Requirements
 
-- Storybook 9 (no other versions supported)
+- Storybook 9 or newer (peer range `>=9`; verified on 9)
 - `react-grab` as a peer dependency
 
 ## Install
