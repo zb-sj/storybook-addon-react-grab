@@ -1,0 +1,53 @@
+package.json
+  a79d10550b878b28 31
+---
+{
+  "schema_version": "zax-attestation/1.1.0",
+  "base_commit_sha": "d585603bbb200eaff2c746f38e93b3f36a4852e3",
+  "prompts": {
+    "a79d10550b878b28": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "548cc341-0087-40f0-9a91-8f411372ca10",
+        "model": "claude-opus-4-8"
+      },
+      "skills": [
+        {
+          "id": "superpowers:brainstorming",
+          "ts": "2026-06-23T06:19:02.134Z"
+        },
+        {
+          "id": "superpowers:writing-plans",
+          "ts": "2026-06-23T07:17:56.955Z"
+        },
+        {
+          "id": "superpowers:subagent-driven-development",
+          "ts": "2026-06-23T07:34:53.188Z"
+        },
+        {
+          "id": "superpowers:systematic-debugging",
+          "ts": "2026-06-23T10:04:36.063Z"
+        }
+      ],
+      "tool_counts": {
+        "Skill": 4,
+        "Bash": 130,
+        "ToolSearch": 5,
+        "WebFetch": 7,
+        "AskUserQuestion": 8,
+        "Write": 10,
+        "Agent": 17,
+        "SendMessage": 3,
+        "Read": 14,
+        "mcp__plugin_playwright_playwright__browser_navigate": 19,
+        "mcp__plugin_playwright_playwright__browser_take_screenshot": 2,
+        "mcp__plugin_playwright_playwright__browser_evaluate": 19,
+        "Edit": 32,
+        "TaskStop": 9
+      },
+      "total_additions": 1,
+      "total_deletions": 0,
+      "overriden_lines": 0
+    }
+  }
+}
